@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Hosting;
-
-namespace CleanArchitecture.Hosting
+﻿namespace CleanArchitecture.Hosting
 {
     public static class Application
     {

@@ -1,6 +1,7 @@
 using Autofac;
 using CleanArchitecture.Api.Infrastructure.Filters;
 using CleanArchitecture.Application.AutofacModules;
+using CleanArchitecture.Hosting;
 using CleanArchitecture.Infrastructure.AutofacModules;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;

@@ -1,8 +1,4 @@
-﻿using Autofac.Extensions.DependencyInjection;
-using Serilog;
-using Serilog.Events;
-
-namespace Microsoft.Extensions.Hosting
+﻿namespace CleanArchitecture.Hosting
 {
     public static class HostBuilderExtensions
     {
