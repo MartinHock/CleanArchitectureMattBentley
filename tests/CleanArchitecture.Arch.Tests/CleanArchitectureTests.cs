@@ -8,14 +8,14 @@ namespace CleanArchitecture.Arch.Tests
         public void CleanArchitecture_Layers_ApplicationDoesNotReferenceInfrastructure()
         {
             AllTypes.That().ResideInNamespace("CleanArchitecture.Application")
-            .ShouldNot().HaveDependencyOn("CleanArchitecture.Infrastructure")
-            .AssertIsSuccessful();
+                .ShouldNot().HaveDependencyOn("CleanArchitecture.Infrastructure")
+                .AssertIsSuccessful();
         }
 
         [Fact]
         public void CleanArchitecture_Layers_CoreDoesNotReferenceOuter()
         {
-            var coreTypes = AllTypes.That().ResideInNamespace("CleanArchitecture.Core");
+            PredicateList? coreTypes = AllTypes.That().ResideInNamespace("CleanArchitecture.Core");
 
             coreTypes.ShouldNot().HaveDependencyOn("CleanArchitecture.Infrastructure")
                 .AssertIsSuccessful();
@@ -28,8 +28,8 @@ namespace CleanArchitecture.Arch.Tests
         public void CleanArchitecture_Repositories_OnlyInInfrastructure()
         {
             AllTypes.That().HaveNameEndingWith("Repository")
-            .Should().ResideInNamespaceStartingWith("CleanArchitecture.Infrastructure")
-            .AssertIsSuccessful();
+                .Should().ResideInNamespaceStartingWith("CleanArchitecture.Infrastructure")
+                .AssertIsSuccessful();
 
             AllTypes.That().HaveNameEndingWith("Repository")
                 .And().AreClasses()

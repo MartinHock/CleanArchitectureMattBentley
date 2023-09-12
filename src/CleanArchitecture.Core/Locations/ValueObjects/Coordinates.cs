@@ -1,5 +1,5 @@
-﻿using CSharpFunctionalExtensions;
-using CleanArchitecture.Core.Abstractions.Guards;
+﻿using CleanArchitecture.Core.Abstractions.Guards;
+using CSharpFunctionalExtensions;
 
 namespace CleanArchitecture.Core.Locations.ValueObjects
 {
@@ -14,6 +14,9 @@ namespace CleanArchitecture.Core.Locations.ValueObjects
             Longitude = longitude;
         }
 
+        public decimal Latitude { get; private set; }
+        public decimal Longitude { get; private set; }
+
         public static Coordinates Create(decimal latitude, decimal longitude)
         {
             Guard.Against.ValueOutOfRange(latitude, -MaxLatitude, MaxLatitude, nameof(Latitude), "°");
@@ -26,8 +29,5 @@ namespace CleanArchitecture.Core.Locations.ValueObjects
             yield return Latitude;
             yield return Longitude;
         }
-
-        public decimal Latitude { get; private set; }
-        public decimal Longitude { get; private set; }
     }
 }

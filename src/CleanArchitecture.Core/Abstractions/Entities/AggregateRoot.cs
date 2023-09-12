@@ -4,9 +4,10 @@ namespace CleanArchitecture.Core.Abstractions.Entities
 {
     public abstract class AggregateRoot : EntityBase
     {
+        private readonly List<DomainEvent> _domainEvents = new();
+
         protected AggregateRoot() : this(Guid.NewGuid())
         {
-
         }
 
         protected AggregateRoot(Guid id)
@@ -14,7 +15,6 @@ namespace CleanArchitecture.Core.Abstractions.Entities
             Id = id;
         }
 
-        private readonly List<DomainEvent> _domainEvents = new List<DomainEvent>();
         public IReadOnlyCollection<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
         public void AddDomainEvent(DomainEvent eventItem)

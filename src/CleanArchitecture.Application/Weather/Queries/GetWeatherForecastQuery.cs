@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Application.Abstractions.Queries;
-using CleanArchitecture.Application.Weather.Models;
 using CleanArchitecture.Application.Abstractions.Repositories;
-using CleanArchitecture.Core.Weather.Entities;
+using CleanArchitecture.Application.Weather.Models;
 using CleanArchitecture.Core.Abstractions.Guards;
+using CleanArchitecture.Core.Weather.Entities;
 
 namespace CleanArchitecture.Application.Weather.Queries
 {
@@ -21,7 +21,7 @@ namespace CleanArchitecture.Application.Weather.Queries
 
         protected override async Task<WeatherForecastDto> HandleAsync(GetWeatherForecastQuery request)
         {
-            var forecast = await _repository.GetByIdAsync(request.Id);
+            WeatherForecast? forecast = await _repository.GetByIdAsync(request.Id);
             Guard.Against.NotFound(forecast);
             return Mapper.Map<WeatherForecastDto>(forecast);
         }

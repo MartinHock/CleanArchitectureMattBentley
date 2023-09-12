@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Application.Locations.Queries
 {
-    public sealed record GetLocationsQuery() : Query<List<LocationDto>>;
+    public sealed record GetLocationsQuery : Query<List<LocationDto>>;
 
     public sealed class GetLocationsQueryHandler : QueryHandler<GetLocationsQuery, List<LocationDto>>
     {
@@ -21,9 +21,9 @@ namespace CleanArchitecture.Application.Locations.Queries
 
         protected override async Task<List<LocationDto>> HandleAsync(GetLocationsQuery request)
         {
-            var locations = await _repository.GetAll()
-                                                 .OrderBy(e => e.City)
-                                                 .ToListAsync();
+            List<Location> locations = await _repository.GetAll()
+                .OrderBy(e => e.City)
+                .ToListAsync();
             return Mapper.Map<List<LocationDto>>(locations);
         }
     }

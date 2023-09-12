@@ -1,5 +1,4 @@
-﻿
-namespace CleanArchitecture.AcceptanceTests.Steps.Abstract
+﻿namespace CleanArchitecture.AcceptanceTests.Steps.Abstract
 {
     [Binding]
     public abstract class BaseSteps

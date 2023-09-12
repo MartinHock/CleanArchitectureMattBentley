@@ -17,8 +17,11 @@ namespace CleanArchitecture.Core.Locations.Entities
         private Location()
 #pragma warning restore CS8618
         {
-
         }
+
+        public string Country { get; private set; }
+        public string City { get; private set; }
+        public Coordinates Coordinates { get; private set; }
 
         public static Location Create(string country, string city, Coordinates coordinates)
         {
@@ -32,9 +35,5 @@ namespace CleanArchitecture.Core.Locations.Entities
 
             return new Location(country, city, coordinates);
         }
-
-        public string Country { get; private set; }
-        public string City { get; private set; }
-        public Coordinates Coordinates { get; private set; }
     }
 }

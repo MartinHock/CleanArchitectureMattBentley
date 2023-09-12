@@ -1,5 +1,4 @@
-﻿
-namespace CleanArchitecture.AcceptanceTests.Settings
+﻿namespace CleanArchitecture.AcceptanceTests.Settings
 {
     public class BrowserSettings
     {

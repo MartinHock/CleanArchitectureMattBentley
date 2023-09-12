@@ -1,5 +1,4 @@
 ﻿using CSharpFunctionalExtensions;
-using System;
 
 namespace CleanArchitecture.Core.Abstractions.Entities
 {

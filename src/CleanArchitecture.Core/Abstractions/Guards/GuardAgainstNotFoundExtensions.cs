@@ -1,5 +1,4 @@
-﻿
-namespace CleanArchitecture.Core.Abstractions.Guards
+﻿namespace CleanArchitecture.Core.Abstractions.Guards
 {
     public static partial class GuardClauseExtensions
     {
@@ -9,6 +8,7 @@ namespace CleanArchitecture.Core.Abstractions.Guards
             {
                 NotFound(message ?? "Not found");
             }
+
             return aggregate!;
         }
     }

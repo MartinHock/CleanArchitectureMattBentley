@@ -7,7 +7,17 @@ namespace CleanArchitecture.AcceptanceTests
     {
         public string EnvironmentName { get; set; } = Environments.Development;
         public string ApplicationName { get; set; } = typeof(TestHostEnvironment).Namespace;
-        public string ContentRootPath { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IFileProvider ContentRootFileProvider { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public string ContentRootPath
+        {
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
+        }
+
+        public IFileProvider ContentRootFileProvider
+        {
+            get => throw new NotImplementedException();
+            set => throw new NotImplementedException();
+        }
     }
 }

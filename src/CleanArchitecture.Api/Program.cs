@@ -7,27 +7,24 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Host.RegisterDefaults();
 
 // Add services to the container.
-builder.Services.AddControllers(options =>
-{
-    options.Filters.Add(typeof(HttpGlobalExceptionFilter));
-});
+builder.Services.AddControllers(options => { options.Filters.Add(typeof(HttpGlobalExceptionFilter)); });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1",
-                    new OpenApiInfo
-                    {
-                        Title = "CleanArchitecture API",
-                        Version = "v1",
-                        Description = "HTTP API for accessing CleanArchitecture data"
-                    });
+        new OpenApiInfo
+        {
+            Title = "CleanArchitecture API",
+            Version = "v1",
+            Description = "HTTP API for accessing CleanArchitecture data"
+        });
     options.DescribeAllParametersInCamelCase();
 });
 builder.Services.AddCors();
@@ -49,7 +46,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(container =>
     container.RegisterModule(new InfrastructureModule(builder.Configuration));
 });
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
@@ -74,9 +71,9 @@ if (app.Environment.IsProduction())
 app.UseCors(options =>
 {
     options.AllowAnyMethod()
-           .AllowAnyHeader()
-           .AllowAnyOrigin()
-           .WithExposedHeaders("Content-Disposition");
+        .AllowAnyHeader()
+        .AllowAnyOrigin()
+        .WithExposedHeaders("Content-Disposition");
 });
 
 app.UseAuthorization();

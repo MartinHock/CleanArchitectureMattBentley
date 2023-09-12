@@ -1,5 +1,4 @@
-﻿
-namespace CleanArchitecture.Core.Abstractions.Services
+﻿namespace CleanArchitecture.Core.Abstractions.Services
 {
     public interface INotificationsService
     {

@@ -19,15 +19,19 @@ namespace CleanArchitecture.Core.Weather.Entities
         private WeatherForecast()
 #pragma warning restore CS8618
         {
-
         }
+
+        public DateTime Date { get; private set; }
+        public Temperature Temperature { get; private set; }
+        public string Summary { get; private set; }
+        public Guid LocationId { get; private set; }
 
         public static WeatherForecast Create(DateTime date, Temperature temperature, string? summary, Guid locationId)
         {
             // validation should go here before the aggregate is created
             // an aggregate should never be in an invalid state
             // the temperature is validated in the Temperature ValueObject and is always valid
-            var forecast = new WeatherForecast(date, temperature, ValidateSummary(summary), locationId);
+            WeatherForecast forecast = new WeatherForecast(date, temperature, ValidateSummary(summary), locationId);
             forecast.PublishCreated();
             return forecast;
         }
@@ -36,11 +40,6 @@ namespace CleanArchitecture.Core.Weather.Entities
         {
             AddDomainEvent(new WeatherForecastCreatedDomainEvent(Id, Temperature.Celcius, Summary!, Date));
         }
-
-        public DateTime Date { get; private set; }
-        public Temperature Temperature { get; private set; }
-        public string Summary { get; private set; }
-        public Guid LocationId { get; private set; }
 
         public void UpdateDate(DateTime date)
         {

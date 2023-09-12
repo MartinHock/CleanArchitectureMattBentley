@@ -1,7 +1,7 @@
-﻿using CleanArchitecture.Core.Abstractions.Exceptions;
+﻿using System.Net;
 using CleanArchitecture.Api.Infrastructure.ActionResults;
+using CleanArchitecture.Core.Abstractions.Exceptions;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.Net;
 
 namespace CleanArchitecture.Api.Infrastructure.Filters
 {
@@ -37,7 +37,9 @@ namespace CleanArchitecture.Api.Infrastructure.Filters
             }
             else
             {
-                var message = _env.IsDevelopment() ? context.Exception.ToString() : "Sorry an error occured, please try again.";
+                string message = _env.IsDevelopment()
+                    ? context.Exception.ToString()
+                    : "Sorry an error occured, please try again.";
                 envelope = Envelope.Create(message, HttpStatusCode.InternalServerError);
             }
 

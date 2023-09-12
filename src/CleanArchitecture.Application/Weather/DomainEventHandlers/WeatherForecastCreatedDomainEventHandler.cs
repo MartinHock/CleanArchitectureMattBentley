@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Application.Abstractions.DomainEventHandlers;
+using CleanArchitecture.Core.Abstractions.Services;
 using CleanArchitecture.Core.Weather.DomainEvents;
 using Microsoft.Extensions.Logging;
-using CleanArchitecture.Core.Abstractions.Services;
 
 namespace CleanArchitecture.Application.Weather.DomainEventHandlers
 {
@@ -9,7 +9,8 @@ namespace CleanArchitecture.Application.Weather.DomainEventHandlers
     {
         private readonly INotificationsService _notificationsService;
 
-        public WeatherForecastCreatedDomainEventHandler(ILogger<DomainEventHandler<WeatherForecastCreatedDomainEvent>> logger,
+        public WeatherForecastCreatedDomainEventHandler(
+            ILogger<DomainEventHandler<WeatherForecastCreatedDomainEvent>> logger,
             INotificationsService notificationsService) : base(logger)
         {
             _notificationsService = notificationsService;

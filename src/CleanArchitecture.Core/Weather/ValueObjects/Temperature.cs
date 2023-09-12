@@ -12,6 +12,9 @@ namespace CleanArchitecture.Core.Weather.ValueObjects
             Celcius = celcius;
         }
 
+        public int Celcius { get; }
+        public int Farenheit => ConvertToFarenheit(Celcius);
+
         public static Temperature FromCelcius(int celcius)
         {
             Guard.Against.LessThan(celcius, AbsoluteZero, message: "Temperature cannot be below Absolute Zero");
@@ -23,11 +26,15 @@ namespace CleanArchitecture.Core.Weather.ValueObjects
             return FromCelcius(ConvertToCelcius(farenheit));
         }
 
-        public int Celcius { get; private set; }
-        public int Farenheit => ConvertToFarenheit(Celcius);
+        public static int ConvertToCelcius(int farenheit)
+        {
+            return (int)Math.Round((farenheit - 32) * (5.0 / 9.0), 0);
+        }
 
-        public static int ConvertToCelcius(int farenheit) => (int)Math.Round((farenheit - 32) * (5.0 / 9.0), 0);
-        public static int ConvertToFarenheit(int celcius) => 32 + (int)Math.Round((celcius / 0.5556), 0);
+        public static int ConvertToFarenheit(int celcius)
+        {
+            return 32 + (int)Math.Round(celcius / 0.5556, 0);
+        }
 
         protected override IEnumerable<IComparable> GetEqualityComponents()
         {

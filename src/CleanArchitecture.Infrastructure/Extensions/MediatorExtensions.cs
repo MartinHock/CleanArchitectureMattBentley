@@ -1,6 +1,4 @@
-﻿using CleanArchitecture.Core.Abstractions.DomainEvents;
-using CleanArchitecture.Core.Abstractions.Entities;
-using CleanArchitecture.Infrastructure;
+﻿using CleanArchitecture.Infrastructure;
 
 namespace MediatR
 {
@@ -8,13 +6,13 @@ namespace MediatR
     {
         public static async Task DispatchEventsAsync(this IMediator mediator, WeatherContext context)
         {
-            var aggregateRoots = context.ChangeTracker
+            List<AggregateRoot> aggregateRoots = context.ChangeTracker
                 .Entries<AggregateRoot>()
                 .Where(x => x.Entity.DomainEvents != null && x.Entity.DomainEvents.Any())
                 .Select(e => e.Entity)
                 .ToList();
 
-            var domainEvents = aggregateRoots
+            List<DomainEvent> domainEvents = aggregateRoots
                 .SelectMany(x => x.DomainEvents)
                 .ToList();
 
@@ -25,7 +23,7 @@ namespace MediatR
 
         private static async Task DispatchDomainEventsAsync(this IMediator mediator, List<DomainEvent> domainEvents)
         {
-            foreach (var domainEvent in domainEvents)
+            foreach (DomainEvent domainEvent in domainEvents)
             {
                 await mediator.Publish(domainEvent);
             }

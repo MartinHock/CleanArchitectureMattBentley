@@ -1,6 +1,6 @@
-using MediatR;
-using CleanArchitecture.Application.Locations.Queries;
 using CleanArchitecture.Application.Locations.Models;
+using CleanArchitecture.Application.Locations.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.Api.Controllers
@@ -21,7 +21,7 @@ namespace CleanArchitecture.Api.Controllers
         [ProducesResponseType(typeof(List<LocationDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get()
         {
-            var locations = await _mediator.Send(new GetLocationsQuery());
+            List<LocationDto> locations = await _mediator.Send(new GetLocationsQuery());
             return Ok(locations);
         }
     }

@@ -4,13 +4,13 @@ namespace CleanArchitecture.Infrastructure.Settings
 {
     public sealed class DatabaseSettings
     {
+        public string? ConnectionString { get; set; }
+
         public static DatabaseSettings Create(IConfiguration configuration)
         {
-            var databaseSettings = new DatabaseSettings();
+            DatabaseSettings databaseSettings = new DatabaseSettings();
             configuration.GetSection("Database").Bind(databaseSettings);
             return databaseSettings;
         }
-
-        public string? ConnectionString { get; set; }
     }
 }

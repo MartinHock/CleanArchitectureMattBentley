@@ -5,11 +5,6 @@ namespace CleanArchitecture.Api.Infrastructure.ActionResults
 {
     public class Envelope
     {
-        public int Status { get; set; }
-        public string? ErrorMessage { get; set; }
-        public DateTime Timestamp { get; set; }
-        public string? TraceId { get; set; }
-
         protected Envelope(int status, string? errorMessage, DateTime timestamp, string? traceId)
         {
             Status = status;
@@ -20,8 +15,12 @@ namespace CleanArchitecture.Api.Infrastructure.ActionResults
 
         protected Envelope()
         {
-
         }
+
+        public int Status { get; set; }
+        public string? ErrorMessage { get; set; }
+        public DateTime Timestamp { get; set; }
+        public string? TraceId { get; set; }
 
         public static Envelope Create(string error, HttpStatusCode statusCode)
         {
@@ -36,11 +35,11 @@ namespace CleanArchitecture.Api.Infrastructure.ActionResults
 
     public class CreatedResultEnvelope
     {
-        public Guid Id { get; set; }
-
         public CreatedResultEnvelope(Guid id)
         {
             Id = id;
         }
+
+        public Guid Id { get; set; }
     }
 }

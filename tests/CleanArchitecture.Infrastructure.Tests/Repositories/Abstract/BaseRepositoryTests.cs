@@ -1,14 +1,14 @@
-﻿using MediatR;
-using Autofac;
-using CleanArchitecture.Core.Abstractions.Entities;
+﻿using Autofac;
 using CleanArchitecture.Application.Abstractions.Repositories;
+using CleanArchitecture.Core.Abstractions.Entities;
+using CleanArchitecture.Core.Locations.Entities;
+using CleanArchitecture.Core.Tests.Builders;
 using CleanArchitecture.Infrastructure.AutofacModules;
+using MediatR;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using CleanArchitecture.Core.Tests.Builders;
-using CleanArchitecture.Core.Locations.Entities;
 
 namespace CleanArchitecture.Infrastructure.Tests.Repositories.Abstract
 {
@@ -16,22 +16,22 @@ namespace CleanArchitecture.Infrastructure.Tests.Repositories.Abstract
     {
         private const string InMemoryConnectionString = "DataSource=:memory:";
         private readonly SqliteConnection _connection;
-        protected readonly WeatherContext Database;
         private readonly IContainer _container;
+        protected readonly WeatherContext Database;
         protected readonly Location Location = new LocationBuilder().Build();
 
         public BaseRepositoryTests()
         {
             _connection = new SqliteConnection(InMemoryConnectionString);
             _connection.Open();
-            var options = new DbContextOptionsBuilder<WeatherContext>()
-                    .UseSqlite(_connection)
-                    .Options;
+            DbContextOptions<WeatherContext> options = new DbContextOptionsBuilder<WeatherContext>()
+                .UseSqlite(_connection)
+                .Options;
 
-            var configuration = new ConfigurationBuilder().Build();
-            var containerBuilder = new ContainerBuilder();
+            IConfigurationRoot configuration = new ConfigurationBuilder().Build();
+            ContainerBuilder containerBuilder = new ContainerBuilder();
 
-            var env = Mock.Of<IHostEnvironment>();
+            IHostEnvironment env = Mock.Of<IHostEnvironment>();
             containerBuilder.RegisterInstance(env);
             containerBuilder.RegisterInstance(Mock.Of<IMediator>());
             Database = new WeatherContext(options, env);
@@ -43,7 +43,7 @@ namespace CleanArchitecture.Infrastructure.Tests.Repositories.Abstract
 
         public async Task InitializeAsync()
         {
-            var locationsRepository = GetRepository<Location>();
+            IRepository<Location> locationsRepository = GetRepository<Location>();
             locationsRepository.Insert(Location);
             await GetUnitOfWork().CommitAsync();
         }
@@ -57,7 +57,7 @@ namespace CleanArchitecture.Infrastructure.Tests.Repositories.Abstract
         }
 
         protected IRepository<T> GetRepository<T>()
-        where T : AggregateRoot
+            where T : AggregateRoot
         {
             return _container.Resolve<IRepository<T>>();
         }

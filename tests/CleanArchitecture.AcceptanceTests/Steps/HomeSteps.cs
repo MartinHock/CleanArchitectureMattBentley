@@ -9,7 +9,6 @@ namespace CleanArchitecture.AcceptanceTests.Steps
 
         public HomeSteps(TestHarness testHarness) : base(testHarness)
         {
-
         }
 
         [Given(@"a user is on the Home page")]

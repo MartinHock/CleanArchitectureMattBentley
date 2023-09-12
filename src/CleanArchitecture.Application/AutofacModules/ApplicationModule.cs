@@ -1,11 +1,12 @@
-﻿using MediatR;
+﻿using System.Reflection;
 using Autofac;
 using AutoMapper;
-using System.Reflection;
+using MediatR;
+using Module = Autofac.Module;
 
 namespace CleanArchitecture.Application.AutofacModules
 {
-    public sealed class ApplicationModule : Autofac.Module
+    public sealed class ApplicationModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -21,7 +22,7 @@ namespace CleanArchitecture.Application.AutofacModules
                 .AsClosedTypesOf(typeof(IRequestHandler<,>));
 
             // Register Automapper profiles
-            var config = new MapperConfiguration(cfg => { cfg.AddMaps(ThisAssembly); });
+            MapperConfiguration config = new MapperConfiguration(cfg => { cfg.AddMaps(ThisAssembly); });
             config.AssertConfigurationIsValid();
 
             builder.Register(c => config)
@@ -29,12 +30,12 @@ namespace CleanArchitecture.Application.AutofacModules
                 .SingleInstance();
 
             builder.Register(c =>
-            {
-                var ctx = c.Resolve<IComponentContext>();
-                var mapperConfig = c.Resolve<MapperConfiguration>();
-                return mapperConfig.CreateMapper(ctx.Resolve);
-            }).As<IMapper>()
-              .SingleInstance();
+                {
+                    IComponentContext ctx = c.Resolve<IComponentContext>();
+                    MapperConfiguration mapperConfig = c.Resolve<MapperConfiguration>();
+                    return mapperConfig.CreateMapper(ctx.Resolve);
+                }).As<IMapper>()
+                .SingleInstance();
         }
     }
 }

@@ -13,11 +13,11 @@ namespace CleanArchitecture.Application.Abstractions.Commands
         }
     }
 
-    public abstract class CommandHandler<TCommand> : CommandHandler, IRequestHandler<TCommand, Unit> where TCommand : Command
+    public abstract class CommandHandler<TCommand> : CommandHandler, IRequestHandler<TCommand, Unit>
+        where TCommand : Command
     {
         protected CommandHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-
         }
 
         public async Task<Unit> Handle(TCommand request, CancellationToken cancellationToken)
@@ -29,11 +29,11 @@ namespace CleanArchitecture.Application.Abstractions.Commands
         protected abstract Task HandleAsync(TCommand request);
     }
 
-    public abstract class CreateCommandHandler<TCommand> : CommandHandler, IRequestHandler<TCommand, Guid> where TCommand : CreateCommand
+    public abstract class CreateCommandHandler<TCommand> : CommandHandler, IRequestHandler<TCommand, Guid>
+        where TCommand : CreateCommand
     {
         protected CreateCommandHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-
         }
 
         public async Task<Guid> Handle(TCommand request, CancellationToken cancellationToken)

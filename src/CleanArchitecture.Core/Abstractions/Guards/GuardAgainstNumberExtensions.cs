@@ -1,9 +1,9 @@
-﻿
-namespace CleanArchitecture.Core.Abstractions.Guards
+﻿namespace CleanArchitecture.Core.Abstractions.Guards
 {
     public static partial class GuardClauseExtensions
     {
-        public static void LessThan(this IGuardClause guardClause, decimal input, decimal minValue, string parameterName = "Value", string units = "", string? message = null)
+        public static void LessThan(this IGuardClause guardClause, decimal input, decimal minValue,
+            string parameterName = "Value", string units = "", string? message = null)
         {
             if (input < minValue)
             {
@@ -11,7 +11,8 @@ namespace CleanArchitecture.Core.Abstractions.Guards
             }
         }
 
-        public static void ValueOutOfRange(this IGuardClause guardClause, decimal input, decimal minValue, decimal maxValue, string parameterName = "Value", string units = "", string? message = null)
+        public static void ValueOutOfRange(this IGuardClause guardClause, decimal input, decimal minValue,
+            decimal maxValue, string parameterName = "Value", string units = "", string? message = null)
         {
             if (input < minValue || input > maxValue)
             {

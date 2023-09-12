@@ -6,9 +6,9 @@ namespace CleanArchitecture.Core.Tests.Builders
     public class WeatherForecastBuilder
     {
         private DateTime _date = DateTime.UtcNow;
-        private int _temperature = 8;
+        private Guid _location = new("B0C91847-8931-4C45-9FD5-018A3A3398CF");
         private string? _summary = "Mild";
-        private Guid _location = new Guid("B0C91847-8931-4C45-9FD5-018A3A3398CF");
+        private int _temperature = 8;
 
         public WeatherForecast Build()
         {

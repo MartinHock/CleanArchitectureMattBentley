@@ -1,5 +1,5 @@
-﻿using MediatR;
-using CleanArchitecture.Core.Abstractions.DomainEvents;
+﻿using CleanArchitecture.Core.Abstractions.DomainEvents;
+using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Application.Abstractions.DomainEventHandlers
@@ -15,9 +15,9 @@ namespace CleanArchitecture.Application.Abstractions.DomainEventHandlers
 
         public async Task Handle(T notification, CancellationToken cancellationToken)
         {
-            Logger.LogInformation("Processing domain event: {type}", this.GetType().Name);
+            Logger.LogInformation("Processing domain event: {type}", GetType().Name);
             await OnHandleAsync(notification);
-            Logger.LogInformation("Completed processing domain event: {type}", this.GetType().Name);
+            Logger.LogInformation("Completed processing domain event: {type}", GetType().Name);
         }
 
         protected abstract Task OnHandleAsync(T @event);

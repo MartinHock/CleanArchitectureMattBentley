@@ -1,5 +1,4 @@
-﻿
-namespace CleanArchitecture.Application.Abstractions.Repositories
+﻿namespace CleanArchitecture.Application.Abstractions.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {

@@ -3,7 +3,8 @@ using MediatR;
 
 namespace CleanArchitecture.Application.Abstractions.Queries
 {
-    public abstract class QueryHandler<TQuery, TResponse> : IRequestHandler<TQuery, TResponse> where TQuery : Query<TResponse>
+    public abstract class QueryHandler<TQuery, TResponse> : IRequestHandler<TQuery, TResponse>
+        where TQuery : Query<TResponse>
     {
         protected readonly IMapper Mapper;
 

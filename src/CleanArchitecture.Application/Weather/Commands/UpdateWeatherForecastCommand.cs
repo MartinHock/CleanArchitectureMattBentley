@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Application.Abstractions.Commands;
 using CleanArchitecture.Application.Abstractions.Repositories;
-using CleanArchitecture.Core.Weather.Entities;
 using CleanArchitecture.Core.Abstractions.Guards;
+using CleanArchitecture.Core.Weather.Entities;
 
 namespace CleanArchitecture.Application.Weather.Commands
 {
@@ -19,7 +19,7 @@ namespace CleanArchitecture.Application.Weather.Commands
 
         protected override async Task HandleAsync(UpdateWeatherForecastCommand request)
         {
-            var forecast = await _repository.GetByIdAsync(request.Id);
+            WeatherForecast? forecast = await _repository.GetByIdAsync(request.Id);
             forecast = Guard.Against.NotFound(forecast);
             forecast.UpdateDate(request.Date);
             await UnitOfWork.CommitAsync();

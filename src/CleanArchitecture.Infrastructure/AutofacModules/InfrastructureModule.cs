@@ -1,9 +1,7 @@
 ﻿using Autofac;
-using CleanArchitecture.Application.Abstractions.Repositories;
 using CleanArchitecture.Infrastructure.Repositories;
 using CleanArchitecture.Infrastructure.Services;
 using CleanArchitecture.Infrastructure.Settings;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
@@ -16,7 +14,6 @@ namespace CleanArchitecture.Infrastructure.AutofacModules
 
         public InfrastructureModule(IConfiguration configuration) : this(CreateDbOptions(configuration), configuration)
         {
-
         }
 
         public InfrastructureModule(DbContextOptions<WeatherContext> options, IConfiguration configuration)
@@ -49,8 +46,8 @@ namespace CleanArchitecture.Infrastructure.AutofacModules
 
         private static DbContextOptions<WeatherContext> CreateDbOptions(IConfiguration configuration)
         {
-            var databaseSettings = DatabaseSettings.Create(configuration);
-            var builder = new DbContextOptionsBuilder<WeatherContext>();
+            DatabaseSettings databaseSettings = DatabaseSettings.Create(configuration);
+            DbContextOptionsBuilder<WeatherContext> builder = new DbContextOptionsBuilder<WeatherContext>();
             builder.UseSqlServer(databaseSettings.ConnectionString);
             return builder.Options;
         }

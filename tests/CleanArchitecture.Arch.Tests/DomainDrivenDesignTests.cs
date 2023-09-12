@@ -1,7 +1,7 @@
-using CSharpFunctionalExtensions;
 using CleanArchitecture.Application.Abstractions.DomainEventHandlers;
 using CleanArchitecture.Core.Abstractions.DomainEvents;
 using CleanArchitecture.Core.Abstractions.Entities;
+using CSharpFunctionalExtensions;
 
 namespace CleanArchitecture.Arch.Tests
 {

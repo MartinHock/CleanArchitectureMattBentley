@@ -1,10 +1,10 @@
-﻿using SpecFlow.Autofac.SpecFlowPlugin;
-using SpecFlow.Autofac;
-using Microsoft.Extensions.Configuration;
-using CleanArchitecture.AcceptanceTests.Settings;
-using Autofac;
-using CleanArchitecture.Infrastructure.AutofacModules;
+﻿using Autofac;
 using CleanArchitecture.AcceptanceTests.Pages;
+using CleanArchitecture.AcceptanceTests.Settings;
+using CleanArchitecture.Infrastructure.AutofacModules;
+using Microsoft.Extensions.Configuration;
+using SpecFlow.Autofac;
+using SpecFlow.Autofac.SpecFlowPlugin;
 
 namespace CleanArchitecture.AcceptanceTests.Hooks
 {
@@ -17,16 +17,16 @@ namespace CleanArchitecture.AcceptanceTests.Hooks
         public static void CreateGlobalContainer(ContainerBuilder container)
         {
             Configuration = new ConfigurationBuilder()
-                                .AddJsonFile("appsettings.json", true)
-                                .Build();
+                .AddJsonFile("appsettings.json", true)
+                .Build();
 
-            var browserSettings = new BrowserSettings();
+            BrowserSettings browserSettings = new BrowserSettings();
             Configuration.GetSection("Browser").Bind(browserSettings);
 
             container.RegisterInstance(new TestHostEnvironment())
-                     .AsImplementedInterfaces();
+                .AsImplementedInterfaces();
 
-            var testHarness = new TestHarness(browserSettings);
+            TestHarness testHarness = new TestHarness(browserSettings);
 
             container.RegisterInstance(testHarness).AsSelf();
             container.RegisterInstance(browserSettings);
@@ -54,7 +54,8 @@ namespace CleanArchitecture.AcceptanceTests.Hooks
         }
 
         [BeforeScenario]
-        public static async Task BeforeScenarioAsync(FeatureContext featureContext, ScenarioContext scenarioContext, TestHarness testHarness)
+        public static async Task BeforeScenarioAsync(FeatureContext featureContext, ScenarioContext scenarioContext,
+            TestHarness testHarness)
         {
             await testHarness.StartScenarioAsync(featureContext.FeatureInfo.Title, scenarioContext.ScenarioInfo.Title);
         }

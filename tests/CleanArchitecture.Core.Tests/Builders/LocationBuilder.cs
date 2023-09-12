@@ -5,10 +5,10 @@ namespace CleanArchitecture.Core.Tests.Builders
 {
     public class LocationBuilder
     {
-        private string _country = "United Kingdom";
         private string _city = "London";
+        private readonly string _country = "United Kingdom";
         private decimal _latitude = 51.51m;
-        private decimal _longitude = -0.13m;
+        private readonly decimal _longitude = -0.13m;
 
         public Location Build()
         {

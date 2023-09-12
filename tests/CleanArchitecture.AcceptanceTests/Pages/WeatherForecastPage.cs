@@ -13,7 +13,10 @@ namespace CleanArchitecture.AcceptanceTests.Pages
 
         public ILocator Title => Page.Locator("h1").GetByText("Weather forecast");
         public ILocator LocationSelector => Page.GetByLabel("Location");
-        public ILocator GenerateButton => Page.GetByRole(AriaRole.Button, new() { Name = "Generate" });
+
+        public ILocator GenerateButton =>
+            Page.GetByRole(AriaRole.Button, new PageGetByRoleOptions { Name = "Generate" });
+
         public ILocator Forecasts => Page.Locator("#forecasts");
         public ILocator ForecastRows => Forecasts.Locator("tbody").Locator("tr");
         public ILocator GeneratePrompt => Page.Locator("#generate-prompt");

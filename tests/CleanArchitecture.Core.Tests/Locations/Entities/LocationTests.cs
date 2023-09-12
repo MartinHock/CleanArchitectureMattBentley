@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Core.Abstractions.Exceptions;
+using CleanArchitecture.Core.Locations.Entities;
 using CleanArchitecture.Core.Tests.Builders;
 
 namespace CleanArchitecture.Core.Tests.Locations.Entities
@@ -8,7 +9,7 @@ namespace CleanArchitecture.Core.Tests.Locations.Entities
         [Fact]
         public void GivenLocation_WhenCreateValid_ThenCreate()
         {
-            var location = new LocationBuilder().Build();
+            Location location = new LocationBuilder().Build();
             location.City.Should().NotBeNullOrWhiteSpace();
         }
 

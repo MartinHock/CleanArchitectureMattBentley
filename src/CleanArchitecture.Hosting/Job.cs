@@ -4,8 +4,8 @@ namespace CleanArchitecture.Hosting
 {
     public abstract class Job : BackgroundService
     {
-        protected readonly ILogger<Job> Logger;
         private readonly IHostApplicationLifetime _hostApplicationLifetime;
+        protected readonly ILogger<Job> Logger;
 
         protected Job(ILogger<Job> logger, IHostApplicationLifetime hostApplicationLifetime)
         {
@@ -17,11 +17,11 @@ namespace CleanArchitecture.Hosting
         {
             try
             {
-                Logger.LogInformation("Starting Job: {type}", this.GetType().Name);
+                Logger.LogInformation("Starting Job: {type}", GetType().Name);
 
                 await RunAsync(stoppingToken);
 
-                Logger.LogInformation("Completed Job: {type}", this.GetType().Name);
+                Logger.LogInformation("Completed Job: {type}", GetType().Name);
             }
             catch (Exception ex)
             {
@@ -29,6 +29,7 @@ namespace CleanArchitecture.Hosting
                 Environment.ExitCode = 1;
                 throw;
             }
+
             _hostApplicationLifetime.StopApplication();
         }
 

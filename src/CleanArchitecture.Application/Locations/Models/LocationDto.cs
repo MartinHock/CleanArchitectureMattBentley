@@ -1,5 +1,4 @@
-﻿
-namespace CleanArchitecture.Application.Locations.Models
+﻿namespace CleanArchitecture.Application.Locations.Models
 {
     public sealed class LocationDto
     {

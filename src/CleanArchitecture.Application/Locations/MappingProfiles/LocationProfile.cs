@@ -8,12 +8,11 @@ namespace CleanArchitecture.Application.Locations.MappingProfiles
     {
         public LocationProfile()
         {
-
             CreateMap<Location, LocationDto>()
                 .ForMember(dest => dest.Latitude,
-                            e => e.MapFrom(src => src.Coordinates.Latitude))
+                    e => e.MapFrom(src => src.Coordinates.Latitude))
                 .ForMember(dest => dest.Longitude,
-                            e => e.MapFrom(src => src.Coordinates.Longitude));
+                    e => e.MapFrom(src => src.Coordinates.Longitude));
         }
     }
 }

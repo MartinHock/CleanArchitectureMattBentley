@@ -9,7 +9,6 @@ namespace CleanArchitecture.AcceptanceTests.Steps
 
         public WeatherForecastSteps(TestHarness testHarness) : base(testHarness)
         {
-
         }
 
         [Given(@"a user is on the Weather Forecast page")]
@@ -35,7 +34,7 @@ namespace CleanArchitecture.AcceptanceTests.Steps
         public async Task ThenWeatherForecastOpen()
         {
             _page = TestHarness.CurrentPage as WeatherForecastPage;
-            var isVisiable = await _page.Title.IsVisibleAsync();
+            bool isVisiable = await _page.Title.IsVisibleAsync();
             isVisiable.Should().BeTrue();
         }
 
@@ -44,14 +43,14 @@ namespace CleanArchitecture.AcceptanceTests.Steps
         {
             if (count == 0)
             {
-                var isVisible = await _page.Forecasts.IsVisibleAsync();
+                bool isVisible = await _page.Forecasts.IsVisibleAsync();
                 isVisible.Should().BeFalse();
             }
             else
             {
-                var hasCount = await _page.WaitForConditionAsync(async () =>
+                bool hasCount = await _page.WaitForConditionAsync(async () =>
                 {
-                    var actualCount = await _page.ForecastRows.CountAsync();
+                    int actualCount = await _page.ForecastRows.CountAsync();
                     return actualCount == count;
                 });
                 hasCount.Should().BeTrue();
@@ -61,7 +60,7 @@ namespace CleanArchitecture.AcceptanceTests.Steps
         [Then(@"Generate prompt is visible")]
         public async Task ThenGeneratePromptVisible()
         {
-            var isVisiable = await _page.GeneratePrompt.IsVisibleAsync();
+            bool isVisiable = await _page.GeneratePrompt.IsVisibleAsync();
             isVisiable.Should().BeTrue();
         }
     }

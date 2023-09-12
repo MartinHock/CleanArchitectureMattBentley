@@ -9,7 +9,7 @@ namespace CleanArchitecture.Migrations.Factories
     {
         public static DbContextOptions<WeatherContext> Create(IConfiguration configuration)
         {
-            var appSettings = DatabaseSettings.Create(configuration);
+            DatabaseSettings appSettings = DatabaseSettings.Create(configuration);
 
             return new DbContextOptionsBuilder<WeatherContext>()
                 .UseSqlServer(appSettings.ConnectionString, b => b.MigrationsAssembly("CleanArchitecture.Migrations"))

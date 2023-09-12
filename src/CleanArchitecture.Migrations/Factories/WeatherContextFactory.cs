@@ -6,14 +6,14 @@ namespace CleanArchitecture.Migrations.Factories
 {
     public class WeatherContextFactory : IDesignTimeDbContextFactory<WeatherContext>
     {
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
 
         public WeatherContextFactory()
         {
-            var builder = new ConfigurationBuilder();
+            ConfigurationBuilder builder = new ConfigurationBuilder();
 
             builder.AddJsonFile("appsettings.json")
-                   .AddEnvironmentVariables();
+                .AddEnvironmentVariables();
             _configuration = builder.Build();
         }
 

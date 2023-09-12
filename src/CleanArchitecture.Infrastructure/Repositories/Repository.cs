@@ -1,8 +1,4 @@
-﻿using CleanArchitecture.Core.Abstractions.Entities;
-using CleanArchitecture.Application.Abstractions.Repositories;
-using Microsoft.EntityFrameworkCore;
-
-namespace CleanArchitecture.Infrastructure.Repositories
+﻿namespace CleanArchitecture.Infrastructure.Repositories
 {
     internal class Repository<T> : IRepository<T> where T : AggregateRoot
     {
@@ -17,11 +13,12 @@ namespace CleanArchitecture.Infrastructure.Repositories
 
         public IQueryable<T> GetAll(bool noTracking = true)
         {
-            var set = _entitySet;
+            DbSet<T> set = _entitySet;
             if (noTracking)
             {
                 return set.AsNoTracking();
             }
+
             return set;
         }
 

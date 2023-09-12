@@ -1,5 +1,4 @@
-﻿
-namespace CleanArchitecture.Application.Weather.Models
+﻿namespace CleanArchitecture.Application.Weather.Models
 {
     public sealed class WeatherForecastUpdateDto
     {

@@ -34,7 +34,7 @@ namespace CleanArchitecture.Migrations
 
         private async Task MigrateLocationsAsync()
         {
-            var locations = new List<Location>()
+            List<Location> locations = new List<Location>
             {
                 CreateLocation("United Kingdom", "London", 51.51m, -0.13m),
                 CreateLocation("India", "Mumbai", 17.38m, -78.46m),
@@ -42,8 +42,8 @@ namespace CleanArchitecture.Migrations
                 CreateLocation("Japan", "Tokyo", 35.69m, 139.69m),
                 CreateLocation("Australia", "Sydney", -33.87m, 151.21m)
             };
-            var existingLocations = _context.Locations.ToList();
-            foreach (var location in locations)
+            List<Location> existingLocations = _context.Locations.ToList();
+            foreach (Location location in locations)
             {
                 if (existingLocations.Any(e => e.City == location.City))
                 {
