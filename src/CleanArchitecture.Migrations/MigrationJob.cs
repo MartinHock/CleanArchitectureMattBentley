@@ -1,10 +1,10 @@
-﻿using CleanArchitecture.Core.Locations.ValueObjects;
+﻿using CleanArchitecture.Core.Locations.Entities;
+using CleanArchitecture.Core.Locations.ValueObjects;
 using CleanArchitecture.Hosting;
 using CleanArchitecture.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using CleanArchitecture.Core.Locations.Entities;
 
 namespace CleanArchitecture.Migrations
 {
@@ -45,12 +45,14 @@ namespace CleanArchitecture.Migrations
             var existingLocations = _context.Locations.ToList();
             foreach (var location in locations)
             {
-                if (!existingLocations.Any(e => e.City == location.City))
+                if (existingLocations.Any(e => e.City == location.City))
                 {
-                    Logger.LogInformation("Adding location: {city}", location.City);
-                    _context.Locations.Add(location);
-                    await _context.SaveChangesAsync();
+                    continue;
                 }
+
+                Logger.LogInformation("Adding location: {city}", location.City);
+                _context.Locations.Add(location);
+                await _context.SaveChangesAsync();
             }
         }
 
