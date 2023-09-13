@@ -133,4 +133,7 @@ Global
 		charts\charts.projitems*{0a906579-dee5-4ef0-bac9-7496400b1c1e}*SharedItemsImports = 13
 		pipelines\pipelines.projitems*{f518fac2-b2fc-4438-b5b1-2b001404ba43}*SharedItemsImports = 13
 	EndGlobalSection
+	GlobalSection(NDepend) = preSolution
+		Project = ".\CleanArchitecture.ndproj"
+	EndGlobalSection
 EndGlobal
