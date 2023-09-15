@@ -1,4 +1,6 @@
-﻿namespace CleanArchitecture.Core.Abstractions.Guards
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace CleanArchitecture.Core.Abstractions.Guards
 {
     public static partial class GuardClauseExtensions
     {
@@ -11,6 +13,7 @@
             }
         }
 
+        [SuppressMessage("NDepend", "ND1004:AvoidMethodsWithTooManyParameters", Justification = "it comes from Ardalis")]
         public static void ValueOutOfRange(this IGuardClause guardClause, decimal input, decimal minValue,
             decimal maxValue, string parameterName = "Value", string units = "", string? message = null)
         {

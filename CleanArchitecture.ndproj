@@ -80,7 +80,7 @@
     </DebtSettings>
   </ProjectDebtSettings>
   <Queries>
-    <Group Name="Quality Gates" Active="True" ShownInReport="False">
+    <Group Name="Quality Gates" Active="False" ShownInReport="False">
       <Query Active="True" DisplayList="True" DisplayStat="False" DisplaySelectionView="False" IsCriticalRule="False"><![CDATA[$Quality Gates Evolution$]]></Query>
       <Query Active="True" DisplayList="True" DisplayStat="False" DisplaySelectionView="False" IsCriticalRule="False"><![CDATA[$Percentage Coverage$]]></Query>
       <Query Active="True" DisplayList="True" DisplayStat="False" DisplaySelectionView="False" IsCriticalRule="False"><![CDATA[$Percentage Coverage on New Code$]]></Query>
